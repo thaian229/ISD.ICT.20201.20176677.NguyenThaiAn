@@ -27,6 +27,7 @@ public class Media {
     protected int quantity;
     protected String type;
     protected String imageURL;
+    protected boolean rushSupported = false;
 
     public Media() throws SQLException{
         stm = AIMSDB.getConnection().createStatement();
@@ -39,6 +40,18 @@ public class Media {
         this.price = price;
         this.quantity = quantity;
         this.type = type;
+
+        //stm = AIMSDB.getConnection().createStatement();
+    }
+
+    public Media (int id, String title, String category, int price, int quantity, String type, boolean rushSupported) throws SQLException{
+        this.id = id;
+        this.title = title;
+        this.category = category;
+        this.price = price;
+        this.quantity = quantity;
+        this.type = type;
+        this.rushSupported = rushSupported;
 
         //stm = AIMSDB.getConnection().createStatement();
     }
@@ -98,6 +111,14 @@ public class Media {
     // getter and setter 
     public int getId() {
         return this.id;
+    }
+
+    public boolean isRushSupported() {
+        return rushSupported;
+    }
+
+    public void setRushSupported(boolean rushSupported) {
+        this.rushSupported = rushSupported;
     }
 
     private Media setId(int id){

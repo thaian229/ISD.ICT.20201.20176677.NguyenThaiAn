@@ -8,9 +8,9 @@ import utils.Configs;
 
 public class Order {
     
-    private int shippingFees;
-    private List lstOrderMedia;
-    private HashMap<String, String> deliveryInfo;
+    protected int shippingFees;
+    protected List lstOrderMedia;
+    protected HashMap<String, String> deliveryInfo;
 
     public Order(){
         this.lstOrderMedia = new ArrayList<>();
@@ -56,7 +56,7 @@ public class Order {
         double amount = 0;
         for (Object object : lstOrderMedia) {
             OrderMedia om = (OrderMedia) object;
-            amount += om.getPrice();
+            amount += om.getPrice() * om.getQuantity();
         }
         return (int) (amount + (Configs.PERCENT_VAT/100)*amount);
     }

@@ -10,6 +10,7 @@ import entity.media.Media;
 public class Cart {
     
     private List<CartMedia> lstCartMedia;
+    private List<CartMedia> listRushCartMedia;
     private static Cart cartInstance;
 
     public static Cart getCart(){
@@ -19,22 +20,34 @@ public class Cart {
 
     private Cart(){
         lstCartMedia = new ArrayList<>();
+        listRushCartMedia = new ArrayList<>();
     }
 
     public void addCartMedia(CartMedia cm){
         lstCartMedia.add(cm);
+        if (cm.getMedia().isRushSupported()) {
+            listRushCartMedia.add(cm);
+        }
     }
 
     public void removeCartMedia(CartMedia cm){
         lstCartMedia.remove(cm);
+        if (cm.getMedia().isRushSupported()) {
+            listRushCartMedia.remove(cm);
+        }
     }
 
     public List getListMedia(){
         return lstCartMedia;
     }
 
+    public List getListRushMedia() {
+        return listRushCartMedia;
+    }
+
     public void emptyCart(){
         lstCartMedia.clear();
+        listRushCartMedia.clear();
     }
 
     public int getTotalMedia(){

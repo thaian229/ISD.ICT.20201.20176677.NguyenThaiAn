@@ -69,7 +69,7 @@ public class PlaceOrderController extends BaseController{
     public void processDeliveryInfo(HashMap info) throws InterruptedException, IOException{
         LOGGER.info("Process Delivery Info");
         LOGGER.info(info.toString());
-        validateDeliveryInfo(info);
+        this.validateDeliveryInfo(info);
     }
     
     /**

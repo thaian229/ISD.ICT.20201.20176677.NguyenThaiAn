@@ -3,6 +3,7 @@
 .vscode
 *.class
 /bin/
+/lib/
 aims.session.sql
 *.ipynb
 test/notebook

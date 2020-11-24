@@ -4,9 +4,9 @@ import entity.media.Media;
 
 public class OrderMedia {
     
-    private Media media;
-    private int price;
-    private int quantity;
+    protected Media media;
+    protected int price;
+    protected int quantity;
 
     public OrderMedia(Media media, int quantity, int price) {
         this.media = media;
