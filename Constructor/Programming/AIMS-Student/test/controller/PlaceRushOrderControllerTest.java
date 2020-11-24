@@ -74,7 +74,7 @@ public class PlaceRushOrderControllerTest {
             "lertgo egije 6g5er 13$5, false",
             "2011-11-02 11:44, false"
     })
-    public void validateDeliveryTest(String deliveryTime, boolean expected) {
+    public void validateDeliveryTimeTest(String deliveryTime, boolean expected) {
         assertEquals(expected, placeRushOrderController.validateDeliveryTime(deliveryTime));
     }
 
@@ -104,6 +104,11 @@ public class PlaceRushOrderControllerTest {
         rushOrder.addOrderMedia(om3);
 
         assertEquals(5 * ( (50000 + 2 * 30000) * 110) / 100 / 100 + 20000, placeRushOrderController.calculateShippingFee(rushOrder));
+    }
+
+    @Test
+    public void calculateShippingFeeTest3() throws SQLException {
+        assertEquals(0, placeRushOrderController.calculateShippingFee(rushOrder));
     }
 
 }
