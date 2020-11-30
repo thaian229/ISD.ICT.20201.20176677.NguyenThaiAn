@@ -7,11 +7,27 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model to store information of rush order
+ *
+ * @author Nguyen Thai An
+ * <p>
+ * creted at: 30/11/2020
+ * <p>
+ * project name: AIMS-Student
+ * <p>
+ * teacher's name: Dr. Nguyen Thi Thu Trang
+ * <p>
+ * class name: TT.CNTT ICT 02 - K62
+ */
 public class RushOrder extends Order {
 
     private String deliveryTime;
     public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
+    /**
+     *
+     */
     public RushOrder() {
         super();
         this.lstOrderMedia = new ArrayList<>();
@@ -20,11 +36,20 @@ public class RushOrder extends Order {
                 LocalDateTime.now().getSecond()).format(formatter);
     }
 
+    /**
+     *
+     * @param lstOrderMedia list of media in order
+     */
     public RushOrder(List lstOrderMedia) {
         super(lstOrderMedia);
         this.lstOrderMedia = lstOrderMedia;
     }
 
+    /**
+     *
+     * @param lstOrderMedia list of media in order
+     * @param deliveryTime wanted delivery time
+     */
     public RushOrder(List lstOrderMedia, String deliveryTime) {
         super(lstOrderMedia);
         this.lstOrderMedia = lstOrderMedia;
@@ -39,6 +64,10 @@ public class RushOrder extends Order {
         this.deliveryTime = deliveryTime;
     }
 
+    /**
+     * add new media to order
+     * @param om the instance of order media
+     */
     @Override
     public void addOrderMedia(OrderMedia om) {
         if (om.getMedia().isRushSupported()) {
@@ -46,6 +75,10 @@ public class RushOrder extends Order {
         }
     }
 
+    /**
+     * remove a media from a order
+     * @param om media to be removed
+     */
     @Override
     public void removeOrderMedia(OrderMedia om) {
         if (om.getMedia().isRushSupported()) {

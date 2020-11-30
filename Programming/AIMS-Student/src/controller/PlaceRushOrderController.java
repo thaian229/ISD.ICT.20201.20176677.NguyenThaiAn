@@ -16,10 +16,28 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.logging.Logger;
 
+/**
+ * controller to handle logic for Place Rush Order screen
+ *
+ * @author Nguyen Thai An
+ * <p>
+ * creted at: 30/11/2020
+ * <p>
+ * project name: AIMS-Student
+ * <p>
+ * teacher's name: Dr. Nguyen Thi Thu Trang
+ * <p>
+ * class name: TT.CNTT ICT 02 - K62
+ */
 public class PlaceRushOrderController extends PlaceOrderController {
 
     private static Logger LOGGER = utils.Utils.getLogger(PlaceRushOrderController.class.getName());
 
+    /**
+     * create order with both normal and rush media
+     * @return The newly created Invoice
+     * @throws SQLException database internal error
+     */
     public Invoice createCombineOrder() throws SQLException {
         Order order = new Order();
         RushOrder rushOrder = new RushOrder();
@@ -37,15 +55,31 @@ public class PlaceRushOrderController extends PlaceOrderController {
         return new Invoice(order, rushOrder);
     }
 
+    /**
+     * make new invoice
+     * @param order normal order
+     * @param rushOrder rush order
+     * @return new invoice
+     */
     public Invoice createInvoice(Order order, RushOrder rushOrder) {
         return new Invoice(order, rushOrder);
     }
 
+    /**
+     * validate rush delivery info form
+     * @param info the hashmap take from views
+     * @throws InterruptedException Unexpected info
+     * @throws IOException IO error
+     */
     @Override
     public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException {
         // TODO
     }
 
+    /**
+     *
+     * @return true if at least 1 media supports rush
+     */
     public boolean validateMediaRushSupport() {
         try {
             if (Cart.getCart().getListRushMedia().size() == 0)
@@ -57,6 +91,11 @@ public class PlaceRushOrderController extends PlaceOrderController {
         return true;
     }
 
+    /**
+     *
+     * @param address delivery address
+     * @return true if address is supported
+     */
     public boolean validateAddressRushSupport(String address) {
         if (address == null) return false;
         if (address.isEmpty()) return false;
@@ -64,8 +103,11 @@ public class PlaceRushOrderController extends PlaceOrderController {
                 || address.toUpperCase().contains("HA NOI");
     }
 
-
-
+    /**
+     *
+     * @param deliveryTime wanted delivery time
+     * @return true if valid time
+     */
     public boolean validateDeliveryTime(String deliveryTime) {
         try {
             LocalDateTime time = LocalDateTime.parse(deliveryTime, RushOrder.formatter);
@@ -77,6 +119,11 @@ public class PlaceRushOrderController extends PlaceOrderController {
         return true;
     }
 
+    /**
+     *
+     * @param rushOrder rush order wanted to calculate shipping fee
+     * @return the shipping fee
+     */
     public int calculateShippingFee(RushOrder rushOrder) {
         int rushFees = 5 * rushOrder.getAmount() / 100;
         rushFees += 10000 * rushOrder.getlstOrderMedia().size();
