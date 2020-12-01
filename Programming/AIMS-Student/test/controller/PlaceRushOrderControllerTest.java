@@ -37,7 +37,7 @@ public class PlaceRushOrderControllerTest {
     @Test
     public void validateMediaRushSupportTest2() throws SQLException {
         Cart.getCart().emptyCart();
-        CartMedia cartMedia = new CartMedia(media.getMediaById(1), Cart.getCart(), 1, 10);
+        CartMedia cartMedia = new CartMedia(media.getMediaById(39), Cart.getCart(), 1, 10);
         Cart.getCart().addCartMedia(cartMedia);
 
         assertEquals(false, placeRushOrderController.validateMediaRushSupport());
@@ -46,7 +46,7 @@ public class PlaceRushOrderControllerTest {
     @Test
     public void validateMediaRushSupportTest3() throws SQLException {
         Cart.getCart().emptyCart();
-        CartMedia cartMedia = new CartMedia(media.getMediaById(1), Cart.getCart(), 1, 10);
+        CartMedia cartMedia = new CartMedia(media.getMediaById(38), Cart.getCart(), 1, 10);
         cartMedia.getMedia().setRushSupported(true);
         Cart.getCart().addCartMedia(cartMedia);
 
@@ -80,10 +80,8 @@ public class PlaceRushOrderControllerTest {
 
     @Test
     public void calculateShippingFeeTest1() throws SQLException {
-        OrderMedia om1 = new OrderMedia(media.getMediaById(1), 1, 50000);
-        OrderMedia om2 = new OrderMedia(media.getMediaById(1), 3, 25000);
-        OrderMedia om3 = new OrderMedia(media.getMediaById(1), 2, 30000);
-        om1.getMedia().setRushSupported(true);
+        OrderMedia om1 = new OrderMedia(media.getMediaById(38), 1, 50000);
+        OrderMedia om2 = new OrderMedia(media.getMediaById(39), 3, 25000);
 
         rushOrder.addOrderMedia(om1);
         rushOrder.addOrderMedia(om2);
@@ -93,11 +91,9 @@ public class PlaceRushOrderControllerTest {
 
     @Test
     public void calculateShippingFeeTest2() throws SQLException {
-        OrderMedia om1 = new OrderMedia(media.getMediaById(1), 1, 50000);
-        OrderMedia om2 = new OrderMedia(media.getMediaById(1), 3, 25000);
-        OrderMedia om3 = new OrderMedia(media.getMediaById(1), 2, 30000);
-        om1.getMedia().setRushSupported(true);
-        om3.getMedia().setRushSupported(true);
+        OrderMedia om1 = new OrderMedia(media.getMediaById(38), 1, 50000);
+        OrderMedia om2 = new OrderMedia(media.getMediaById(39), 3, 25000);
+        OrderMedia om3 = new OrderMedia(media.getMediaById(40), 2, 30000);
 
         rushOrder.addOrderMedia(om1);
         rushOrder.addOrderMedia(om2);

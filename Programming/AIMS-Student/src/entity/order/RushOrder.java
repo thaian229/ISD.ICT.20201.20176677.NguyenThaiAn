@@ -2,10 +2,16 @@ package entity.order;
 
 import com.sun.scenario.effect.impl.state.LinearConvolveRenderState;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import entity.db.AIMSDB;
 
 /**
  * Model to store information of rush order
@@ -37,7 +43,6 @@ public class RushOrder extends Order {
     }
 
     /**
-     *
      * @param lstOrderMedia list of media in order
      */
     public RushOrder(List lstOrderMedia) {
@@ -46,14 +51,29 @@ public class RushOrder extends Order {
     }
 
     /**
-     *
      * @param lstOrderMedia list of media in order
-     * @param deliveryTime wanted delivery time
+     * @param deliveryTime  wanted delivery time
      */
     public RushOrder(List lstOrderMedia, String deliveryTime) {
         super(lstOrderMedia);
         this.lstOrderMedia = lstOrderMedia;
         this.deliveryTime = deliveryTime;
+    }
+
+    public static ArrayList<RushOrder> queryAllRushOrder() throws SQLException {
+        ArrayList<RushOrder> rushOrderArrayList = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM RushOrder";
+            Statement statement = AIMSDB.getConnection().createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            // loop the result set
+            while (rs.next()) {
+                RushOrder rushOrder = new RushOrder();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return rushOrderArrayList;
     }
 
     public String getDeliveryTime() {
@@ -66,6 +86,7 @@ public class RushOrder extends Order {
 
     /**
      * add new media to order
+     *
      * @param om the instance of order media
      */
     @Override
@@ -77,6 +98,7 @@ public class RushOrder extends Order {
 
     /**
      * remove a media from a order
+     *
      * @param om media to be removed
      */
     @Override
