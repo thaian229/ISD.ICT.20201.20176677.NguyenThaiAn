@@ -14,6 +14,7 @@ import controller.PlaceRushOrderController;
 import controller.ViewCartController;
 import entity.cart.CartMedia;
 import entity.order.Order;
+import entity.order.RushOrder;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,6 +26,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.popup.PopupScreen;
+import views.screen.shipping.RushShippingScreenHandler;
 import views.screen.shipping.ShippingScreenHandler;
 
 public class CartScreenHandler extends BaseScreenHandler {
@@ -149,7 +151,7 @@ public class CartScreenHandler extends BaseScreenHandler {
 
     public void requestToPlaceRushOrder() throws SQLException, IOException {
         try {
-            // create placeOrderController and process the order
+            // create placeRushOrderController and process the order
             PlaceRushOrderController placeRushOrderController = new PlaceRushOrderController();
             if (placeRushOrderController.getListCartMedia().size() == 0) {
                 PopupScreen.error("You don't have anything to place");
@@ -162,15 +164,15 @@ public class CartScreenHandler extends BaseScreenHandler {
             displayCartWithMediaAvailability();
 
             // create order
-            Order order = placeRushOrderController.createOrder();
+            RushOrder rushOrder = placeRushOrderController.createRushOrder();
 
             // display shipping form
-            ShippingScreenHandler ShippingScreenHandler = new ShippingScreenHandler(this.stage, Configs.SHIPPING_SCREEN_PATH, order);
-            ShippingScreenHandler.setPreviousScreen(this);
-            ShippingScreenHandler.setHomeScreenHandler(homeScreenHandler);
-            ShippingScreenHandler.setScreenTitle("Shipping Screen");
-            ShippingScreenHandler.setBController(placeRushOrderController);
-            ShippingScreenHandler.show();
+            RushShippingScreenHandler rushShippingScreenHandler = new RushShippingScreenHandler(this.stage, Configs.RUSH_SHIPPING_SCREEN_PATH, rushOrder);
+            rushShippingScreenHandler.setPreviousScreen(this);
+            rushShippingScreenHandler.setHomeScreenHandler(homeScreenHandler);
+            rushShippingScreenHandler.setScreenTitle("Rush Shipping Screen");
+            rushShippingScreenHandler.setBController(placeRushOrderController);
+            rushShippingScreenHandler.show();
 
         } catch (MediaNotAvailableException e) {
             // if some media are not available then display cart and break usecase Place Order

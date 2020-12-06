@@ -168,7 +168,7 @@
         </GridPane>
         <ScrollPane fx:id="vboxIteRush" hbarPolicy="NEVER" layoutX="670.0" layoutY="70.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="670.0">
             <content>
-                <VBox fx:id="vboxItems" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="567.0" />
+                <VBox fx:id="vboxItemsRush" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="567.0" />
             </content>
         </ScrollPane>
         <Button fx:id="btnConfirmRushInvoice" alignment="CENTER" contentDisplay="CENTER" layoutX="540.0" layoutY="690.0" mnemonicParsing="false" onMouseClicked="#confirmInvoice" prefHeight="46.0" prefWidth="316.0" style="-fx-background-color: #5091e6; -fx-cursor: hand;" text="Confirm rush order" textFill="WHITE">
@@ -178,7 +178,7 @@
         </Button>
       <ScrollPane fx:id="vboxIteNormal" hbarPolicy="NEVER" layoutX="670.0" layoutY="322.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="670.0">
          <content>
-            <VBox fx:id="vboxItems1" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="567.0" />
+            <VBox fx:id="vboxItemsNormal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="567.0" />
          </content>
       </ScrollPane>
       <Label layoutX="951.0" layoutY="39.0" text="Rush Shipping">

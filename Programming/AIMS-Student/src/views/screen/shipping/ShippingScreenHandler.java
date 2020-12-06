@@ -64,7 +64,7 @@ public class ShippingScreenHandler extends BaseScreenHandler implements Initiali
 	}
 
 	@FXML
-	void submitDeliveryInfo(MouseEvent event) throws IOException, InterruptedException, SQLException {
+	public void submitDeliveryInfo(MouseEvent event) throws IOException, InterruptedException, SQLException {
 
 		// add info to messages
 		HashMap messages = new HashMap<>();

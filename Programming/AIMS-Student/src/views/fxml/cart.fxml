@@ -82,7 +82,7 @@
             </AnchorPane>
             <AnchorPane layoutX="10.0" layoutY="168.0" prefHeight="139.0" prefWidth="344.0">
                <children>
-                  <Button fx:id="btnPlaceRushOrder" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="75.0" mnemonicParsing="false" onMouseClicked="#requestToPlaceOrder" prefHeight="55.0" prefWidth="316.0" style="-fx-background-color: #F03C2D; -fx-cursor: hand;" text="Place rush order" textFill="WHITE">
+                  <Button fx:id="btnPlaceRushOrder" alignment="CENTER" contentDisplay="CENTER" layoutX="14.0" layoutY="75.0" mnemonicParsing="false" onMouseClicked="#requestToPlaceRushOrder" prefHeight="55.0" prefWidth="316.0" style="-fx-background-color: #F03C2D; -fx-cursor: hand;" text="Place rush order" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="24.0" />
                      </font>

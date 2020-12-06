@@ -38,6 +38,7 @@ import utils.Configs;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.invoice.InvoiceScreenHandler;
+import views.screen.invoice.RushInvoiceScreenHandler;
 import views.screen.popup.PopupScreen;
 import views.screen.shipping.ShippingScreenHandler;
 
@@ -96,14 +97,15 @@ public class RushShippingScreenHandler extends BaseScreenHandler implements Init
     }
 
     @FXML
-    void submitDeliveryInfo(MouseEvent event) throws IOException, InterruptedException, SQLException {
+    public void submitRushDeliveryInfo(MouseEvent event) throws IOException, InterruptedException, SQLException {
 
         // add info to messages
-        HashMap messages = new HashMap<>();
-        messages.put("name", nameRush.getText());
-        messages.put("phone", phoneRush.getText());
-        messages.put("address", addressRush.getText());
-        messages.put("instructions", instructionsRush.getText());
+        HashMap<String, String> messages = new HashMap<>();
+        messages.put("name", nameRush.getText().trim());
+        messages.put("phone", phoneRush.getText().trim());
+        messages.put("address", addressRush.getText().trim());
+        messages.put("instructions", instructionsRush.getText().trim());
+        messages.put("deliveryTime", deliveryTimeRush.getText().trim());
         messages.put("province", provinceRush.getValue());
         try {
             // process and validate delivery info
@@ -119,16 +121,16 @@ public class RushShippingScreenHandler extends BaseScreenHandler implements Init
 
         // create invoice screen
         Invoice invoice = getBController().createInvoice(rushOrder);
-        BaseScreenHandler InvoiceScreenHandler = new InvoiceScreenHandler(this.stage, Configs.INVOICE_SCREEN_PATH, invoice);
-        InvoiceScreenHandler.setPreviousScreen(this);
-        InvoiceScreenHandler.setHomeScreenHandler(homeScreenHandler);
-        InvoiceScreenHandler.setScreenTitle("Invoice Screen");
-        InvoiceScreenHandler.setBController(getBController());
-        InvoiceScreenHandler.show();
+        BaseScreenHandler rushInvoiceScreenHandler = new RushInvoiceScreenHandler(this.stage, Configs.RUSH_INVOICE_SCREEN_PATH, invoice);
+        rushInvoiceScreenHandler.setPreviousScreen(this);
+        rushInvoiceScreenHandler.setHomeScreenHandler(homeScreenHandler);
+        rushInvoiceScreenHandler.setScreenTitle("Rush Invoice Screen");
+        rushInvoiceScreenHandler.setBController(getBController());
+        rushInvoiceScreenHandler.show();
     }
 
-    public PlaceOrderController getBController(){
-        return (PlaceOrderController) super.getBController();
+    public PlaceRushOrderController getBController(){
+        return (PlaceRushOrderController) super.getBController();
     }
 
     public void notifyError(){

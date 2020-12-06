@@ -55,6 +55,18 @@ public class PlaceRushOrderController extends PlaceOrderController {
         return new Invoice(order, rushOrder);
     }
 
+    public RushOrder createRushOrder() {
+        RushOrder rushOrder = new RushOrder();
+        for (Object object : Cart.getCart().getListMedia()) {
+            CartMedia cartMedia = (CartMedia) object;
+            OrderMedia orderMedia = new OrderMedia(cartMedia.getMedia(),
+                    cartMedia.getQuantity(),
+                    cartMedia.getPrice());
+            rushOrder.getlstOrderMedia().add(orderMedia);
+        }
+        return rushOrder;
+    }
+
     /**
      * make new invoice
      * @param order normal order

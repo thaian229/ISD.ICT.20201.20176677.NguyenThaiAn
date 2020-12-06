@@ -17,7 +17,7 @@ public class BaseScreenHandler extends FXMLScreenHandler {
 	protected final Stage stage;
 	protected HomeScreenHandler homeScreenHandler;
 	protected Hashtable<String, String> messages;
-	private BaseController bController;
+	protected BaseController bController;
 
 	private BaseScreenHandler(String screenPath) throws IOException {
 		super(screenPath);

@@ -68,10 +68,10 @@ public class RushInvoiceScreenHandler extends BaseScreenHandler {
     private Label totalRush;
 
     @FXML
-    private VBox vboxIteRush;
+    private VBox vboxItemsRush;
 
     @FXML
-    private VBox vboxIteNormal;
+    private VBox vboxItemsNormal;
 
     private Invoice invoice;
 
@@ -96,7 +96,11 @@ public class RushInvoiceScreenHandler extends BaseScreenHandler {
             try {
                 MediaInvoiceScreenHandler mis = new MediaInvoiceScreenHandler(Configs.INVOICE_MEDIA_SCREEN_PATH);
                 mis.setOrderMedia((OrderMedia) orderMedia);
-                vboxIteNormal.getChildren().add(mis.getContent());
+                if (((OrderMedia) orderMedia).getMedia().isRushSupported()) {
+                    vboxItemsRush.getChildren().add(mis.getContent());
+                } else {
+                    vboxItemsNormal.getChildren().add(mis.getContent());
+                }
             } catch (IOException | SQLException e) {
                 System.err.println("errors: " + e.getMessage());
                 throw new ProcessInvoiceException(e.getMessage());

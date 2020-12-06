@@ -128,7 +128,7 @@
                         </Label>
                     </children>
                 </Pane>
-                <ComboBox fx:id="province" prefHeight="50.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <ComboBox fx:id="provinceRush" prefHeight="50.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <GridPane.margin>
                         <Insets />
                     </GridPane.margin>
@@ -149,7 +149,7 @@
                 </Pane>
             </children>
         </GridPane>
-        <Button fx:id="btnConfirmDelivery" alignment="CENTER" contentDisplay="CENTER" layoutX="526.0" layoutY="645.0" mnemonicParsing="false" onMouseClicked="#submitDeliveryInfo" prefHeight="46.0" prefWidth="316.0" style="-fx-background-color: #5091e6; -fx-cursor: hand;" text="Confirm rush delivery" textFill="WHITE">
+        <Button fx:id="btnConfirmRushDelivery" alignment="CENTER" contentDisplay="CENTER" layoutX="526.0" layoutY="645.0" mnemonicParsing="false" onMouseClicked="#submitRushDeliveryInfo" prefHeight="46.0" prefWidth="316.0" style="-fx-background-color: #5091e6; -fx-cursor: hand;" text="Confirm rush delivery" textFill="WHITE">
             <font>
                 <Font name="Segoe UI Bold" size="24.0" />
             </font>

@@ -40,6 +40,7 @@ public class Configs {
 	// static resource
 	public static final String IMAGE_PATH = "assets/images";
 	public static final String INVOICE_SCREEN_PATH = "/views/fxml/invoice.fxml";
+	public static final String RUSH_INVOICE_SCREEN_PATH = "/views/fxml/rush_invoice.fxml";
 	public static final String INVOICE_MEDIA_SCREEN_PATH = "/views/fxml/media_invoice.fxml";
 	public static final String PAYMENT_SCREEN_PATH = "/views/fxml/payment.fxml";
 	public static final String RESULT_SCREEN_PATH = "/views/fxml/result.fxml";
