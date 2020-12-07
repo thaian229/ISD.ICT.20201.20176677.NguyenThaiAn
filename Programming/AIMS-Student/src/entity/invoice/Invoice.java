@@ -37,6 +37,10 @@ public class Invoice {
         this.order = order;
     }
 
+    public Invoice(RushOrder rushOrder){
+        this.rushOrder = rushOrder;
+    }
+
     /**
      * constructor for combine invoice
      * @param order normal order

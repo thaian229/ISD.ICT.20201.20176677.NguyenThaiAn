@@ -7,6 +7,7 @@ import entity.order.Order;
 import entity.order.OrderMedia;
 import entity.order.RushOrder;
 import entity.shipping.Shipment;
+import utils.Configs;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -85,7 +86,12 @@ public class PlaceRushOrderController extends PlaceOrderController {
      */
     @Override
     public void validateDeliveryInfo(HashMap<String, String> info) throws InterruptedException, IOException {
-        // TODO
+        validateMediaRushSupport();
+        validateAddressRushSupport(info.get("province"));
+        validateDeliveryTime(info.get("deliveryTime"));
+        validateName(info.get("name"));
+        validateAddress(info.get("address"));
+        validatePhoneNumber(info.get("phone"));
     }
 
     /**
@@ -138,7 +144,11 @@ public class PlaceRushOrderController extends PlaceOrderController {
      */
     public int calculateShippingFee(RushOrder rushOrder) {
         int rushFees = 5 * rushOrder.getAmount() / 100;
-        rushFees += 10000 * rushOrder.getlstOrderMedia().size();
+        for (Object obj : rushOrder.getlstOrderMedia()) {
+            OrderMedia om = (OrderMedia) obj;
+            if (om.getMedia().isRushSupported())
+                rushFees += 10000;
+        }
         LOGGER.info("Order Amount: " + rushOrder.getAmount() + " -- Rush Shipping Fees: " + rushFees);
         rushOrder.setShippingFees(rushFees);
         return rushFees;

@@ -13,6 +13,7 @@ import common.exception.InvalidDeliveryInfoException;
 import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.order.OrderMedia;
+import entity.order.RushOrder;
 import views.screen.popup.PopupScreen;
 
 /**
@@ -58,6 +59,10 @@ public class PlaceOrderController extends BaseController{
      */
     public Invoice createInvoice(Order order) {
         return new Invoice(order);
+    }
+
+    public Invoice createInvoice(RushOrder rushOrder) {
+        return new Invoice(rushOrder);
     }
 
     /**

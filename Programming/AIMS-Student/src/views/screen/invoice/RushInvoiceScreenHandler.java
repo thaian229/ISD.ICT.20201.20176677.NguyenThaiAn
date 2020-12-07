@@ -81,18 +81,18 @@ public class RushInvoiceScreenHandler extends BaseScreenHandler {
         setInvoiceInfo();
     }
 
-    private void setInvoiceInfo(){
-        HashMap<String, String> deliveryInfo = invoice.getOrder().getDeliveryInfo();
+    private void setInvoiceInfo() {
+        HashMap<String, String> deliveryInfo = invoice.getRushOrder().getDeliveryInfo();
         nameRush.setText(deliveryInfo.get("name"));
         provinceRush.setText(deliveryInfo.get("province"));
         instructionsRush.setText(deliveryInfo.get("instructions"));
         addressRush.setText(deliveryInfo.get("address"));
-        subtotalRush.setText(Utils.getCurrencyFormat(invoice.getOrder().getAmount()));
-        shippingFeesRush.setText(Utils.getCurrencyFormat(invoice.getOrder().getShippingFees()));
-        int amount = invoice.getOrder().getAmount() + invoice.getOrder().getShippingFees();
+        subtotalRush.setText(Utils.getCurrencyFormat(invoice.getRushOrder().getAmount()));
+        shippingFeesRush.setText(Utils.getCurrencyFormat(invoice.getRushOrder().getShippingFees()));
+        int amount = invoice.getRushOrder().getAmount() + invoice.getRushOrder().getShippingFees();
         totalRush.setText(Utils.getCurrencyFormat(amount));
         invoice.setAmount(amount);
-        invoice.getOrder().getlstOrderMedia().forEach(orderMedia -> {
+        invoice.getRushOrder().getlstOrderMedia().forEach(orderMedia -> {
             try {
                 MediaInvoiceScreenHandler mis = new MediaInvoiceScreenHandler(Configs.INVOICE_MEDIA_SCREEN_PATH);
                 mis.setOrderMedia((OrderMedia) orderMedia);

@@ -119,7 +119,8 @@ public class Media {
                     .setCategory(res.getString("category"))
                     .setMediaURL(res.getString("imageUrl"))
                     .setPrice(res.getInt("price"))
-                    .setType(res.getString("type"));
+                    .setType(res.getString("type"))
+                    .setRushSupported(res.getInt("isRushable") == 1);
             medium.add(media);
         }
         return medium;
