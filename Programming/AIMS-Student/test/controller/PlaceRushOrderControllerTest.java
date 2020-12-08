@@ -5,10 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import entity.cart.Cart;
 import entity.cart.CartMedia;
 import entity.media.Media;
-import entity.order.Order;
 import entity.order.OrderMedia;
 import entity.order.RushOrder;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -86,7 +84,7 @@ public class PlaceRushOrderControllerTest {
         rushOrder.addOrderMedia(om1);
         rushOrder.addOrderMedia(om2);
 
-        assertEquals(5 * (50000 * 110) / 100 / 100 + 10000, placeRushOrderController.calculateShippingFee(rushOrder));
+        assertEquals(5 * (50000 * 110) / 100 / 100 + 10000, placeRushOrderController.calculateShippingFee(rushOrder.getAmount(), rushOrder.getlstOrderMedia()));
     }
 
     @Test
@@ -99,12 +97,12 @@ public class PlaceRushOrderControllerTest {
         rushOrder.addOrderMedia(om2);
         rushOrder.addOrderMedia(om3);
 
-        assertEquals(5 * ( (50000 + 2 * 30000) * 110) / 100 / 100 + 20000, placeRushOrderController.calculateShippingFee(rushOrder));
+        assertEquals(5 * ( (50000 + 2 * 30000) * 110) / 100 / 100 + 20000, placeRushOrderController.calculateShippingFee(rushOrder.getAmount(), rushOrder.getlstOrderMedia()));
     }
 
     @Test
     public void calculateShippingFeeTest3() throws SQLException {
-        assertEquals(0, placeRushOrderController.calculateShippingFee(rushOrder));
+        assertEquals(0, placeRushOrderController.calculateShippingFee(rushOrder.getAmount(), rushOrder.getlstOrderMedia()));
     }
 
 }

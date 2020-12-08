@@ -126,17 +126,7 @@ public class Media {
         return medium;
     }
 
-    public void updateMediaFieldById(String tbname, int id, String field, Object value) throws SQLException {
-        Statement stm = AIMSDB.getConnection().createStatement();
-        if (value instanceof String) {
-            value = "\"" + value + "\"";
-        }
-        stm.executeUpdate(" update " + tbname + " set" + " "
-                + field + "=" + value + " "
-                + "where id=" + id + ";");
-    }
-
-    // getter and setter 
+    // getter and setter
     public int getId() {
         return this.id;
     }

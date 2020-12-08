@@ -6,15 +6,13 @@ import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.order.OrderMedia;
 import entity.order.RushOrder;
-import entity.shipping.Shipment;
-import utils.Configs;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.HashMap;
-import java.util.Random;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -33,6 +31,14 @@ import java.util.logging.Logger;
 public class PlaceRushOrderController extends PlaceOrderController {
 
     private static Logger LOGGER = utils.Utils.getLogger(PlaceRushOrderController.class.getName());
+
+    @Override
+    public void processDeliveryInfo(HashMap info) throws InterruptedException, IOException{
+        LOGGER.info("Process Delivery Info");
+        LOGGER.info(info.toString());
+
+        this.validateDeliveryInfo(info);
+    }
 
     /**
      * create order with both normal and rush media
@@ -139,18 +145,19 @@ public class PlaceRushOrderController extends PlaceOrderController {
 
     /**
      *
-     * @param rushOrder rush order wanted to calculate shipping fee
+     *
+     * @param orderAmount
+     * @param orderMediaList
      * @return the shipping fee
      */
-    public int calculateShippingFee(RushOrder rushOrder) {
-        int rushFees = 5 * rushOrder.getAmount() / 100;
-        for (Object obj : rushOrder.getlstOrderMedia()) {
+    public int calculateShippingFee(int orderAmount, List orderMediaList) {
+        int rushFees = 5 * orderAmount / 100;
+        for (Object obj : orderMediaList) {
             OrderMedia om = (OrderMedia) obj;
             if (om.getMedia().isRushSupported())
                 rushFees += 10000;
         }
-        LOGGER.info("Order Amount: " + rushOrder.getAmount() + " -- Rush Shipping Fees: " + rushFees);
-        rushOrder.setShippingFees(rushFees);
+        LOGGER.info("Order Amount: " + orderAmount + " -- Rush Shipping Fees: " + rushFees);
         return rushFees;
     }
 }

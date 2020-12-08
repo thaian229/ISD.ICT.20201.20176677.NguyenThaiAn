@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import entity.db.AIMSDB;
@@ -60,20 +61,9 @@ public class RushOrder extends Order {
         this.deliveryTime = deliveryTime;
     }
 
-    public static ArrayList<RushOrder> queryAllRushOrder() throws SQLException {
-        ArrayList<RushOrder> rushOrderArrayList = new ArrayList<>();
-        try {
-            String sql = "SELECT * FROM RushOrder";
-            Statement statement = AIMSDB.getConnection().createStatement();
-            ResultSet rs = statement.executeQuery(sql);
-            // loop the result set
-            while (rs.next()) {
-                RushOrder rushOrder = new RushOrder();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return rushOrderArrayList;
+    @Override
+    public HashMap getDeliveryInfo() {
+        return deliveryInfo;
     }
 
     public String getDeliveryTime() {

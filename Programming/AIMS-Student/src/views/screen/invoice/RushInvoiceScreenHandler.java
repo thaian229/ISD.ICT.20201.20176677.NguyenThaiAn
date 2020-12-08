@@ -85,8 +85,10 @@ public class RushInvoiceScreenHandler extends BaseScreenHandler {
         HashMap<String, String> deliveryInfo = invoice.getRushOrder().getDeliveryInfo();
         nameRush.setText(deliveryInfo.get("name"));
         provinceRush.setText(deliveryInfo.get("province"));
+        phoneRush.setText(deliveryInfo.get("phone"));
         instructionsRush.setText(deliveryInfo.get("instructions"));
         addressRush.setText(deliveryInfo.get("address"));
+        deliveryTimeRush.setText(deliveryInfo.get("deliveryTime"));
         subtotalRush.setText(Utils.getCurrencyFormat(invoice.getRushOrder().getAmount()));
         shippingFeesRush.setText(Utils.getCurrencyFormat(invoice.getRushOrder().getShippingFees()));
         int amount = invoice.getRushOrder().getAmount() + invoice.getRushOrder().getShippingFees();

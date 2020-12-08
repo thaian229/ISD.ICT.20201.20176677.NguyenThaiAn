@@ -1,46 +1,27 @@
 package views.screen.shipping;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 import common.exception.InvalidDeliveryInfoException;
-import common.exception.MediaNotAvailableException;
-import common.exception.PlaceOrderException;
-import controller.PlaceOrderController;
 import controller.PlaceRushOrderController;
-import controller.ViewCartController;
-import entity.cart.CartMedia;
 import entity.invoice.Invoice;
-import entity.order.Order;
 import entity.order.RushOrder;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import utils.Configs;
-import utils.Utils;
 import views.screen.BaseScreenHandler;
-import views.screen.invoice.InvoiceScreenHandler;
 import views.screen.invoice.RushInvoiceScreenHandler;
-import views.screen.popup.PopupScreen;
-import views.screen.shipping.ShippingScreenHandler;
 
 /**
  * description
@@ -115,7 +96,7 @@ public class RushShippingScreenHandler extends BaseScreenHandler implements Init
         }
 
         // calculate shipping fees
-        int shippingFees = getBController().calculateShippingFee(rushOrder);
+        int shippingFees = getBController().calculateShippingFee(rushOrder.getAmount(), rushOrder.getlstOrderMedia());
         rushOrder.setShippingFees(shippingFees);
         rushOrder.setDeliveryInfo(messages);
 
