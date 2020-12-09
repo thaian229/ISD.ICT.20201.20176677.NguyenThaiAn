@@ -39,7 +39,7 @@ public class RushOrder extends Order {
         super();
         this.lstOrderMedia = new ArrayList<>();
         this.deliveryTime = LocalDateTime.of(LocalDateTime.now().getYear(), LocalDateTime.now().getMonthValue(),
-                LocalDateTime.now().getDayOfMonth(), LocalDateTime.now().getHour() + 1, LocalDateTime.now().getMinute(),
+                LocalDateTime.now().getDayOfMonth(), LocalDateTime.now().getHour(), LocalDateTime.now().getMinute(),
                 LocalDateTime.now().getSecond()).format(formatter);
     }
 
