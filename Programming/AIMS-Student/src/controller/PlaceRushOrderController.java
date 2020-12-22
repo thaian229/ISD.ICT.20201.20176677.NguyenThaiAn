@@ -6,6 +6,8 @@ import entity.invoice.Invoice;
 import entity.order.Order;
 import entity.order.OrderMedia;
 import entity.order.RushOrder;
+import utils.RushBasicShippingFormula;
+import utils.ShippingFeeCalculator;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -30,6 +32,7 @@ import java.util.logging.Logger;
  */
 public class PlaceRushOrderController extends PlaceOrderController {
 
+    private ShippingFeeCalculator shippingFeeCalculator;
     private static Logger LOGGER = utils.Utils.getLogger(PlaceRushOrderController.class.getName());
 
     @Override
@@ -38,6 +41,15 @@ public class PlaceRushOrderController extends PlaceOrderController {
         LOGGER.info(info.toString());
 
         this.validateDeliveryInfo(info);
+    }
+
+    public void setShippingFeeCalculator(ShippingFeeCalculator shippingFeeCalculator) {
+        this.shippingFeeCalculator = shippingFeeCalculator;
+    }
+
+    public PlaceRushOrderController() {
+        super();
+        this.shippingFeeCalculator = new RushBasicShippingFormula();
     }
 
     /**
@@ -151,13 +163,6 @@ public class PlaceRushOrderController extends PlaceOrderController {
      * @return the shipping fee
      */
     public int calculateShippingFee(int orderAmount, List orderMediaList) {
-        int rushFees = 5 * orderAmount / 100;
-        for (Object obj : orderMediaList) {
-            OrderMedia om = (OrderMedia) obj;
-            if (om.getMedia().isRushSupported())
-                rushFees += 10000;
-        }
-        LOGGER.info("Order Amount: " + orderAmount + " -- Rush Shipping Fees: " + rushFees);
-        return rushFees;
+        return this.shippingFeeCalculator.calculateShippingFee(orderAmount, orderMediaList);
     }
 }

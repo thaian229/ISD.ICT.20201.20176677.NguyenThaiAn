@@ -2,6 +2,7 @@ package entity.payment;
 
 public class PaymentTransaction {
 	private String errorCode;
+	private PaymentCard paymentCard;
 	private CreditCard card;
 	private String transactionId;
 	private String transactionContent;
@@ -13,6 +14,17 @@ public class PaymentTransaction {
 		super();
 		this.errorCode = errorCode;
 		this.card = card;
+		this.transactionId = transactionId;
+		this.transactionContent = transactionContent;
+		this.amount = amount;
+		this.createdAt = createdAt;
+	}
+
+	public PaymentTransaction(String errorCode, PaymentCard card, String transactionId, String transactionContent,
+							  int amount, String createdAt) {
+		super();
+		this.errorCode = errorCode;
+		this.paymentCard = card;
 		this.transactionId = transactionId;
 		this.transactionContent = transactionContent;
 		this.amount = amount;
